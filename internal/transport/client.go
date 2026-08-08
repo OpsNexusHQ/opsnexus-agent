@@ -23,4 +23,5 @@ func (t *ConsoleTransport) Send(ctx context.Context, payload any) error {
 	t.logger.Info("transport payload transmitted", slog.Any("payload", payload))
 	return nil
 }
+
 var _ Transport = (*ConsoleTransport)(nil)
