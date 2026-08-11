@@ -20,3 +20,6 @@ coverage.out
 # OS
 .DS_Store
 Thumbs.db
+
+# Local build binary
+/opsnexus-agent
