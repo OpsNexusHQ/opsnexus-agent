@@ -1,12 +1,14 @@
 package agent
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"io"
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"sync"
 	"testing"
 	"time"
@@ -209,6 +211,30 @@ func TestAgentConstructsAgentTelemetry(t *testing.T) {
 
 	if dataMap["value"] != 42 {
 		t.Errorf("expected value 42, got %v", dataMap["value"])
+	}
+}
+
+func TestAgentLogsSuccessfulCollectionAndTransmission(t *testing.T) {
+	var logs bytes.Buffer
+	logger := slog.New(slog.NewTextHandler(&logs, &slog.HandlerOptions{Level: slog.LevelDebug}))
+	a := &Agent{
+		logger:     logger,
+		collectors: []collector.Collector{&mockCollector{}},
+		transport:  &mockTransport{},
+	}
+
+	a.collectAndSend(context.Background())
+	output := logs.String()
+	for _, message := range []string{
+		"msg=\"metrics collected successfully\"",
+		"collector=mock",
+		"duration=",
+		"msg=\"telemetry transmitted successfully\"",
+		"metric_sources=1",
+	} {
+		if !strings.Contains(output, message) {
+			t.Errorf("expected log output to contain %q, got %q", message, output)
+		}
 	}
 }
 

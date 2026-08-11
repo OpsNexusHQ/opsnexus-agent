@@ -116,6 +116,7 @@ func (a *Agent) collectAndSend(ctx context.Context) {
 		default:
 		}
 
+		collectionStart := time.Now()
 		data, err := col.Collect(ctx)
 		if err != nil {
 			a.logger.Error(
@@ -127,6 +128,10 @@ func (a *Agent) collectAndSend(ctx context.Context) {
 		}
 
 		metrics[col.Name()] = data
+		a.logger.Debug("metrics collected successfully",
+			slog.String("collector", col.Name()),
+			slog.Duration("duration", time.Since(collectionStart)),
+		)
 	}
 
 	if len(metrics) == 0 {
@@ -139,11 +144,19 @@ func (a *Agent) collectAndSend(ctx context.Context) {
 		Metrics:   metrics,
 	}
 
+	transmissionStart := time.Now()
 	if err := a.transport.Send(ctx, telemetry); err != nil {
 		a.logger.Error(
 			"telemetry transmission failed",
 			slog.String("agent_id", agentID),
 			slog.Any("error", err),
 		)
+		return
 	}
+
+	a.logger.Debug("telemetry transmitted successfully",
+		slog.String("agent_id", agentID),
+		slog.Duration("duration", time.Since(transmissionStart)),
+		slog.Int("metric_sources", len(metrics)),
+	)
 }
