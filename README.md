@@ -27,9 +27,9 @@ The agent can be configured via environment variables or flag parameters:
 
 | Variable | Default | Description |
 |---|---|---|
-| `OPSNEXUS_BACKEND_URL` | `http://localhost:8080` | URL of the OpsNexus backend server |
-| `OPSNEXUS_COLLECT_INTERVAL` | `10s` | Metric collection & transmission frequency |
-| `OPSNEXUS_AGENT_NAME` | Hostname | Human-readable name for the agent |
+| `OPSNEXUS_AGENT_BACKEND_URL` | `http://localhost:8080` | URL of the OpsNexus backend server |
+| `OPSNEXUS_AGENT_COLLECTION_INTERVAL` | `10s` | Metric collection & transmission frequency |
+| `OPSNEXUS_AGENT_LOG_LEVEL` | `info` | Structured log level |
 
 ---
 
@@ -42,8 +42,8 @@ git clone https://github.com/OpsNexusHQ/opsnexus-agent.git
 cd opsnexus-agent
 
 # 2. Configure & Run
-export OPSNEXUS_BACKEND_URL="http://localhost:8080"
-export OPSNEXUS_COLLECT_INTERVAL="10s"
+export OPSNEXUS_AGENT_BACKEND_URL="http://localhost:8080"
+export OPSNEXUS_AGENT_COLLECTION_INTERVAL="10s"
 
 go run ./cmd/opsnexus-agent
 ```
