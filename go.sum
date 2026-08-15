@@ -30,3 +30,5 @@ golang.org/x/sys v0.41.0/go.mod h1:OgkHotnGiDImocRcuBABYBEXf8A9a87e/uXjp9XT3ks=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
+github.com/OpsNexusHQ/opsnexus-common v0.5.0 h1:Yms+mM2MLozsC3caLDpxNW6AQbLcBgj5kEoLES37jm8=
+github.com/OpsNexusHQ/opsnexus-common v0.5.0/go.mod h1:NBdLxpgZadhE5c2RAdQZprvq75KE+LcagoTZeEgcDoE=
