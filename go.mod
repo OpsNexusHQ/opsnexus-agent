@@ -2,7 +2,7 @@ module github.com/OpsNexusHQ/opsnexus-agent
 
 go 1.24.0
 
-require github.com/OpsNexusHQ/opsnexus-common v0.0.0
+require github.com/OpsNexusHQ/opsnexus-common v0.5.0
 
 require (
 	github.com/ebitengine/purego v0.10.2 // indirect
@@ -15,5 +15,3 @@ require (
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
 	golang.org/x/sys v0.41.0 // indirect
 )
-
-replace github.com/OpsNexusHQ/opsnexus-common => ../opsnexus-common
